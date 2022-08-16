@@ -26,9 +26,9 @@ async function getJSON() {
        
         const getUniswapContract = async () => await new ethers.Contract(Contract.tokens, uniswapAbi, provider);
 
-        const getEthUsdPrice = async () => await getUniswapContract(uniswapUsdcAddress);
-            // .then(contract => contract.getReserves())
-            // .then(reserves => Number(reserves._reserve0) / Number(reserves._reserve1) * 1e12)
+        const getEthUsdPrice = async () => await getUniswapContract(uniswapUsdcAddress)
+            .then(contract => contract.getReserves())
+            .then(reserves => Number(reserves._reserve0) / Number(reserves._reserve1) * 1e12)
         
         async function main() {
             console.log(await getEthUsdPrice())
